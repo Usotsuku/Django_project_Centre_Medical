@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+  <h1 class="text-center mb-4">Liste des Rendez-Vous</h1>
+  <div class="table-responsive">
+    <table class="table table-hover table-bordered table-striped">
+      <thead>
+        <tr class="bg-primary text-white">
+          <th scope="col">Date</th>
+          <th scope="col">Médecin</th>
+          <th scope="col">Patient</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for rendezvous in rendezvous_list %}
+        <tr>
+          <td>{{ rendezvous.date_heure }}</td>
+          <td>{{ rendezvous.medecin.user.prenom }} {{ rendezvous.medecin.user.nom }}</td>
+          <td>{{ rendezvous.patient.user.nom }} {{ rendezvous.patient.user.prenom }}</td>
+          <td>
+            <div class="d-flex justify-content-center">
+              <a href="{% url 'modify_rendezvous' rendezvous.id %}" class="btn btn-sm btn-primary mr-2" title="Modifier">Modifier</a>
+              <a href="{% url 'delete_rendezvous' rendezvous.id %}" class="btn btn-sm btn-danger" title="Supprimer">Supprimer</a>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

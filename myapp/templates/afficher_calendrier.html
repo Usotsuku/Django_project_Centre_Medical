@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-center mb-4">Calendrier des rendez-vous</h2>
+    <div class="row">
+        {% for rendezvous in rendezvous %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ rendezvous.date_heure|date:"l jS F Y" }}</h5>
+                    <p class="card-text">{{ rendezvous.date_heure|date:"H:i" }}</p>
+                    <hr>
+                    <div>
+                        <p class="card-text">{{ rendezvous.patient.user.nom }} {{ rendezvous.patient.user.prenom }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

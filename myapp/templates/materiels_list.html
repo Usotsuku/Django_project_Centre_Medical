@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card p-4">
+        <h1 class="text-center mb-4">Liste de Matériel</h1>
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Nom</th>
+                <th>Dernière maintenance</th>
+                <th>État de maintenance</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for material in materials %}
+                <tr>
+                  <td>{{ material.nom }}</td>
+                  <td>{{ material.derniere_maintenance }}</td>
+                  <td>
+                    <span class="badge {% if material.status == 'OK' %}badge-success{% elif material.status == 'Besoin de maintenance' %}badge-danger{% endif %}">
+                      {{ material.status }}
+                    </span>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  body {
+    background-color: #f8f9fa;
+  }
+
+  .card {
+    border: none;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+
+  h1 {
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .table {
+    font-size: 16px;
+  }
+
+  .table th {
+    background-color: #007bff;
+    color: #fff;
+  }
+
+  .table th, .table td {
+    vertical-align: middle;
+  }
+
+  .table .badge {
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 20px;
+  }
+
+  .badge-success {
+    background-color: #28a745;
+    color: #fff;
+  }
+
+  .badge-danger {
+    background-color: #dc3545;
+    color: #fff;
+  }
+</style>
+{% endblock %}

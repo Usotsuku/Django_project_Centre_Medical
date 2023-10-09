@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-lg border-0">
+        <div class="card-body">
+          <h1 class="text-center mb-5">Supprimer le rendez-vous?</h1>
+          <p class="text-center mb-5">Êtes-vous sûr de vouloir supprimer le rendez-vous de {{ rendezvous.patient.nom }} {{ rendezvous.patient.prenom }} ? Cette action ne peut pas être annulée.</p>
+          <form method="POST">
+            {% csrf_token %}
+            <div class="form-group text-center mt-5">
+              <button type="submit" class="btn btn-danger mr-2 px-5">Supprimer</button>
+              <a href="{% url 'rendezvous_list' %}" class="btn btn-light px-5">Annuler</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

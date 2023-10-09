@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card border-0 shadow">
+                <div class="card-header bg-transparent text-center">
+                    <h2 class="mb-0">Modifier Utilisateur: {{ user.username }}</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group row">
+                            <label for="username" class="col-sm-3 col-form-label">Username:</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="username" value="{{ user.username }}" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="nom" class="col-sm-3 col-form-label">Nom:</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="nom" value="{{ user.nom }}" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="prenom" class="col-sm-3 col-form-label">Prenom:</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="prenom" value="{{ user.prenom }}" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="email" class="col-sm-3 col-form-label">Email:</label>
+                            <div class="col-sm-9">
+                                <input type="email" name="email" value="{{ user.email }}" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="is_rh" class="col-sm-3 col-form-label">Is RH?</label>
+                            <div class="col-sm-9">
+                                <input type="checkbox" name="is_rh" {% if user.is_rh %}checked{% endif %}>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="is_medecin" class="col-sm-3 col-form-label">Is Médecin?</label>
+                            <div class="col-sm-9">
+                                <input type="checkbox" name="is_medecin" {% if user.is_medecin %}checked{% endif %}>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="is_infermiere" class="col-sm-3 col-form-label">Is Infirmière?</label>
+                            <div class="col-sm-9">
+                                <input type="checkbox" name="is_infermiere" {% if user.is_infermiere %}checked{% endif %}>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="is_visiteur" class="col-sm-3 col-form-label">Is Visiteur?</label>
+                            <div class="col-sm-9">
+                                <input type="checkbox" name="is_visiteur" {% if user.is_visiteur %}checked{% endif %}>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

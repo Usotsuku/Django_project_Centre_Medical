@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card p-4">
+        <h1 class="text-center mb-4">Bienvenue, {{medecin.user.prenom}} {{medecin.user.nom}}</h1>
+        <ul class="list-group list-group-flush menu">
+          <li class="list-group-item">
+            <a href="{% url 'consulter_patients' %}" class="text-decoration-none">Consulter la liste de vos patients</a>
+          </li>
+          <li class="list-group-item">
+            <a href="{% url 'demander_reservation' %}" class="text-decoration-none">Demander une réservation</a>
+          </li>
+          <li class="list-group-item">
+            <a href="{% url 'afficher_calendrier' %}" class="text-decoration-none">Afficher le calendrier des rendez-vous</a>
+          </li>
+          <li class="list-group-item">
+            <a href="{% url 'modifier_informations' %}" class="text-decoration-none">Modifier vos informations</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+
+  body {
+    background-color: #f8f9fa;
+  }
+
+  .card {
+    border: none;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+
+  h1 {
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .menu {
+    font-size: 18px;
+  }
+
+  .list-group-item {
+    border: none;
+    background-color: transparent;
+    padding: 10px;
+  }
+
+  .list-group-item a {
+    color: #007bff;
+    transition: color 0.2s;
+  }
+
+  .list-group-item a:hover {
+    color: #0056b3;
+    text-decoration: none;
+  }
+
+  .img-fluid {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
+{% endblock %}

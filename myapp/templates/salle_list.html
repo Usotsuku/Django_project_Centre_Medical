@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <section class="container pb-5">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="text-center mb-5">Liste des salles</h1>
+        <div class="table-responsive">
+          <table class="table table-striped table-hover">
+            <thead class="bg-primary text-white">
+              <tr>
+                <th>Type de salle</th>
+                <th>Statut</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for salle in salles %}
+              <tr>
+                <td>{{ salle.type_salle }}</td>
+                <td>
+                  {% if salle.est_occupee %}
+                    Occupée par {{ salle.occuppee_par.user.nom }} {{ salle.occuppee_par.user.prenom }}
+                  {% else %}
+                    Libre
+                  {% endif %}
+                </td>
+                <td>
+                  {% if salle.est_occupee %}
+                    <form method="POST" action="{% url 'liberer_salle' salle.pk %}">
+                      {% csrf_token %}
+                      <button type="submit" class="btn btn-danger">Liberer salle</button>
+                    </form>
+                  {% else %}
+                    <form method="POST" action="{% url 'reserver_salle' salle.pk %}">
+                      {% csrf_token %}
+                      <select name="medecin" class="form-select mr-2" aria-label="Select medecin">
+                        {% for medecin in medecins %}
+                          <option value="{{ medecin.pk }}">{{ medecin.user.nom }} {{ medecin.user.prenom }}</option>
+                        {% endfor %}
+                      </select>
+                      <button type="submit" class="btn btn-primary">Reserver salle</button>
+                    </form>
+                  {% endif %}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

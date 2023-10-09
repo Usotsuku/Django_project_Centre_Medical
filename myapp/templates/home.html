@@ -1,0 +1,166 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"/>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet"/>
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.png' %}">
+    <style>
+        header {
+          background-color: #0B3954;
+          color: white;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          padding: 1rem;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        nav ul {
+          display: flex;
+          list-style: none;
+          margin: 0;
+          padding: 0;
+        }
+        nav li {
+          margin-right: 1rem;
+        }
+        nav a {
+          color: white;
+          text-decoration: none;
+          transition: color 0.2s;
+        }
+        nav a:hover {
+          color: #8B98A7;
+        }
+        .hero {
+          flex: 1 1 40rem;
+          margin: 2rem;
+        }
+        .hero h1 {
+          font-size: 4rem;
+          margin-bottom: 1rem;
+        }
+        .hero p {
+          font-size: 1.5rem;
+          margin-bottom: 2rem;
+        }
+        .btn-primary {
+          background-color: #8B98A7;
+          border: none;
+          color: white;
+          font-size: 1.2rem;
+          padding: 0.8rem 1.5rem;
+          transition: background-color 0.2s;
+          text-transform: uppercase;
+        }
+        .btn-primary:hover {
+          background-color: #0B3954;
+          cursor: pointer;
+        }
+        .about {
+          margin: 4rem auto;
+          max-width: 80rem;
+          text-align: justify;
+        }
+        .about h2 {
+          font-size: 3rem;
+          margin-bottom: 2rem;
+        }
+        .about p {
+          font-size: 1.2rem;
+          line-height: 1.5;
+          margin-bottom: 1.5rem;
+        }
+        footer {
+          background-color: #0B3954;
+          color: white;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          padding: 2rem;
+        }
+        footer p {
+            margin: 0.5rem 0;
+        }
+        body {
+            background: url("{% static 'images/19366.jpg' %}") center/cover no-repeat fixed;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        @media only screen and (max-width: 768px) {
+            .hero {
+                text-align: center;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1.2rem;
+            }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav li {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        .fadeIn {
+            animation-name: fadeIn;
+            animation-duration: 1s;
+        }
+        nav a span {
+            display: inline-block;
+        }
+        nav a:hover span {
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <header class="fadeIn">
+        <nav>
+          <ul>
+            <li><a href="{% url 'home' %}"><span>Accueil</span></a></li>
+            <li><a href="{% url 'login' %}"><span>Se Connecter</span></a></li>
+            <li><a href="{% url 'register' %}"><span>S'inscrire</span></a></li>
+          </ul>
+        </nav>
+        <div class="hero">
+          <h1>Centre Médical Safe</h1>
+          <p>Bienvenue sur notre site web!</p>
+        </div>
+    </header>
+
+    <section class="about">
+        <h2>À Propos de Nous</h2>
+        <p>Nous sommes un centre médical de renom situé au coeur de la ville, offrant des soins de qualité pour tous nos patients. Notre équipe est composée de médecins, infirmières, et autres professionnels de la santé, travaillant ensemble pour offrir les meilleurs soins possibles.</p>
+        <p>Sur notre site web, vous pouvez prendre rendez-vous, consulter votre dossier médical, et gérer vos informations personnelles. Si vous êtes un nouveau patient, vous pouvez vous inscrire et prendre rendez-vous en ligne.</p>
+        <a href="{% url 'register' %}" class="btn-primary">S'inscrire</a>
+    </section>
+
+    <footer class="fadeIn">
+        <p>Centre Médical Safe  </p>
+        <p>123 Rue Principale, Casablanca</p>
+        <p>Téléphone: +212661163150</p>
+        <p>Email: safecentre@gmail.com</p>
+    </footer>
+
+    <script src="{% static 'jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    {% block scripts %}
+    {% endblock %}
+</body>
+</html>

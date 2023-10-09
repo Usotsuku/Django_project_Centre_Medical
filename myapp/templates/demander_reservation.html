@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-center mb-4">Demander une réservation</h2>
+    <ul class="list-group">
+        {% for salle in salles %}
+        <li class="list-group-item">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h5>{{ salle.type_salle }}</h5>
+                    {% if salle.est_occupee %}
+                    Occupée par {{ salle.occuppee_par.user.prenom }} {{ salle.occuppee_par.user.nom }} jusqu'à {{ salle.usagehistory_set.last.end_time }}
+                    {% else %}
+                    Libre
+                    {% endif %}
+                </div>
+                <div>
+                    {% if not salle.est_occupee %}
+                    <form method="post" class="form-inline">
+                        {% csrf_token %}
+                        <input type="hidden" name="salle_id" value="{{ salle.id }}">
+                        <input type="datetime-local" name="end_time" class="form-control mr-2" required>
+                        <button type="submit" class="btn btn-primary">Réserver</button>
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

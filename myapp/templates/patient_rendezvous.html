@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Rendezvous List
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center">Liste de rendezvous</h1>
+    <h2 class="text-center">Rendezvous à venir</h2>
+    <ul class="list-group">
+        {% for rendezvous in upcoming_rendezvous %}
+        <li class="list-group-item">
+            <p>Date et heure: {{ rendezvous.date_heure }}</p>
+            <p>Raison pour la visite: {{ rendezvous.patient.raison_de_visite }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h2 class="text-center mt-5">Historique des rendezvous</h2>
+    <ul class="list-group">
+        {% for rendezvous in old_rendezvous %}
+        <li class="list-group-item">
+            <p>Date et heure: {{ rendezvous.date_heure }}</p>
+            <p>Raison pour la visite: {{ rendezvous.patient.raison_de_visite }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+</div>
+{% endblock %}

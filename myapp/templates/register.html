@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card border-0 shadow">
+                <div class="card-header bg-transparent text-center">
+                    <h2 class="mb-0">Créer un Compte</h2>
+                    <p class="mb-0">Veuillez remplir les informations suivantes pour créer votre compte :</p>
+                    <p>Déjà membre ? <a href="{% url 'login' %}">Connectez-vous</a></p>
+                </div>
+                <div class="card-body">
+                    {% if msg %}
+                    <div class="alert alert-danger">
+                        {{ msg }}
+                    </div>
+                    {% endif %}
+                    <form method="post">
+                        {% csrf_token %}
+
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.username.id_for_label }}">Nom d'utilisateur<span class="text-danger">*</span></label>
+                                {{ form.username }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.email.id_for_label }}">Adresse Email<span class="text-danger">*</span></label>
+                                {{ form.email }}
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.nom.id_for_label }}">Nom<span class="text-danger">*</span></label><br>
+                                {{ form.nom }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.prenom.id_for_label }}">Prénom<span class="text-danger">*</span></label>
+                                {{ form.prenom }}
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.password1.id_for_label }}">Mot de Passe<span class="text-danger">*</span></label>
+                                {{ form.password1 }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="{{ form.password2.id_for_label }}">Confirmer le Mot de Passe<span class="text-danger">*</span></label>
+                                {{ form.password2 }}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <p>Choisir le Type d'Utilisateur :</p>
+                            <div class="form-check">
+                                {{ form.is_admin }}
+                                <label class="form-check-label font-weight-bold" for="{{ form.is_admin.id_for_label }}">Admin</label>
+                            </div>
+                            <div class="form-check">
+                                {{ form.is_rh }}
+                                <label class="form-check-label font-weight-bold" for="{{ form.is_rh.id_for_label }}">RH</label>
+                            </div>
+                            <div class="form-check">
+                                {{ form.is_visiteur }}
+                                <label class="form-check-label font-weight-bold" for="{{ form.is_visiteur.id_for_label }}">Visiteur</label>
+                            </div>
+                            <div class="form-check">
+                                {{ form.is_infermiere }}
+                                <label class="form-check-label font-weight-bold" for="{{ form.is_infermiere.id_for_label }}">Infirmière</label>
+                            </div>
+                            <div class="form-check">
+                                {{ form.is_medecin }}
+                                <label class="form-check-label font-weight-bold" for="{{ form.is_medecin.id_for_label }}">Médecin</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <small class="text-muted">En cliquant sur "Créer un Compte", vous acceptez nos Conditions d'Utilisation et notre Politique de Confidentialité, y compris notre utilisation des cookies.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block">Créer un Compte</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
